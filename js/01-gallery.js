@@ -26,10 +26,11 @@ const newImg = galleryItems
   .join("");
 
 list.insertAdjacentHTML("beforeend", newImg);
-const newGallaryItem = document.querySelector(".gallery__item");
-newGallaryItem.addEventListener("click", (e) => {
+list.addEventListener("click", (e) => {
   e.preventDefault();
-
+  if (e.target.tagName !== "IMG") {
+    return;
+  }
   const instance = basicLightbox.create(`
     <img
       class="gallery__image"
@@ -39,7 +40,13 @@ newGallaryItem.addEventListener("click", (e) => {
 
   instance.show();
 });
-console.dir(newGallaryItem);
+// list.addEventListener("keydown", (event) => {
+//   if (event.target.key === "Escape") {
+//     instance.close();
+//     console.dir(event);
+//   }
+// });
+
 console.log(galleryItems);
 
 //20 строка спросить зачем дата-атрибут если он нигде не используется????
